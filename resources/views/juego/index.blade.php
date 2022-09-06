@@ -8,6 +8,26 @@
     <title>Document</title>
 </head>
 <body>
-    estamos en el juego
+    {{ $jugadores[6]->nombres }}
+    <br>
+
+    {{ json_encode($cartasA) }}
+    <br>
+    @foreach ($cartasA as $item)
+        {{ json_encode($item) }}
+    @endforeach
+<br>
+{{array_column($cartasA,'foto')[0]}}
+<img src="{{ url('../../storage/img/real_madrid.png') }}" alt="">
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

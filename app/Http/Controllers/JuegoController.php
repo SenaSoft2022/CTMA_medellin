@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carta;
 use App\Models\Juego;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
 
 class JuegoController extends Controller
@@ -14,8 +16,26 @@ class JuegoController extends Controller
      */
     public function index()
     {
-        //
+        session_start();
+        $cartas = Carta::all();
+        foreach($cartas as $item){
+            $id =$item->id;
+
+        }
+        return $id;exit;
+        if (isset($_SESSION['jugador1'])) {
+            $jugador = $_SESSION['jugador1'];
+            if (isset($_SESSION['cartasA'])) {
+                $cartasA =array($_SESSION['cartasA']) ;
+            }
+        }
+
+
+
+        return view('juego.index')->with(['jugadores' => $jugador,'cartasA'=>$cartasA]);
+        //return $jugador;
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -13,15 +13,24 @@
         @csrf
         <div class="vh-100 row justify-content-center align-items-center">
             <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                    Featured
-                </div>
                 <div class="card-body">
-                    <div class="mb-3 row">
-                        <input type="text" name="cod_juego">
-                        <button>Entrar a sala</button>
+                    <i class="fa-solid fa-futbol">
+                        <h1></h1>
+                    </i>
+                    <div class="">
+                        <div class="mb-3">
+                            <label class="form-label">Ingresar codigo de sala</label>
+                            <input name="cod_juego" type="text" class="form-control">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn">Entrar a sala</button>
+                        </div>
                     </div>
                 </div>
+                <div class="card-footer text-center">
+                    <a  class="text-white" href="{{ route('inicio.create') }}">Crear una sala</a>
+                </div>
             </div>
+
     </form>
 @endsection

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inicio;
-use App\Models\Juego;
+use App\Models\Carta;
 use Illuminate\Http\Request;
 
-class InicioController extends Controller
+class CartaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,6 @@ class InicioController extends Controller
     public function index()
     {
         //
-        return view('jugador.index');
     }
 
     /**
@@ -26,7 +24,7 @@ class InicioController extends Controller
      */
     public function create()
     {
-        return view('jugador.crear_sala');
+        //
     }
 
     /**
@@ -38,24 +36,15 @@ class InicioController extends Controller
     public function store(Request $request)
     {
         //
-        $cod_juego = Request()->except('_token');
-        $juego = Juego::where('cod_juego',$cod_juego)->first();
-        if(!empty($juego)){
-            $cod_juego2 = $request->get('cod_juego');
-
-            return view('jugador.create')->with(['codigo'=>$cod_juego2]);
-            //return $cod_juego2;
-        }
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inicio  $inicio
+     * @param  \App\Models\Carta  $carta
      * @return \Illuminate\Http\Response
      */
-    public function show(Inicio $inicio)
+    public function show(Carta $carta)
     {
         //
     }
@@ -63,10 +52,10 @@ class InicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Inicio  $inicio
+     * @param  \App\Models\Carta  $carta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inicio $inicio)
+    public function edit(Carta $carta)
     {
         //
     }
@@ -75,10 +64,10 @@ class InicioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Inicio  $inicio
+     * @param  \App\Models\Carta  $carta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inicio $inicio)
+    public function update(Request $request, Carta $carta)
     {
         //
     }
@@ -86,10 +75,10 @@ class InicioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inicio  $inicio
+     * @param  \App\Models\Carta  $carta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inicio $inicio)
+    public function destroy(Carta $carta)
     {
         //
     }

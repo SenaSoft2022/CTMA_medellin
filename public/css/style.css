@@ -2,7 +2,8 @@
 
 body {
     background-image :url('../../storage/img/fondo1.jpg');
-
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 
@@ -11,4 +12,12 @@ body {
 }
 
 
+label{
+    color: white;
+}
 
+.btn{
+    background-color: #7DA641;
+    justify-content: center;
+    align-items: center;
+}
