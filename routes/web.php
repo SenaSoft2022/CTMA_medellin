@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\JuegoController;
+use App\Http\Controllers\JugadorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('jugador', JugadorController::class);
+Route::resource('inicio', InicioController::class);
+
+Route::resource('juego', JuegoController::class);
+
