@@ -19,10 +19,21 @@ class JuegoController extends Controller
         session_start();
         $cartas = Carta::all();
         foreach($cartas as $item){
-            $id =$item->id;
+            $id[] =$item->id;
 
         }
-        return $id;exit;
+        for ($i=1; $i <= count($id) ; $i++) {
+            $ids=$i;
+
+            $baraja[] = Carta::find($ids);
+        }
+
+
+
+
+        return view('juego.index')->with(['baraja'=>$baraja]);
+
+
         if (isset($_SESSION['jugador1'])) {
             $jugador = $_SESSION['jugador1'];
             if (isset($_SESSION['cartasA'])) {

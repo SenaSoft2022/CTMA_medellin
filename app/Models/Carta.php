@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carta extends Model
 {
     use HasFactory;
-    public $table ="carta";
+    public $table ="cartas";
     public $primarykey = "id";
     public $timestamps = false;
 }

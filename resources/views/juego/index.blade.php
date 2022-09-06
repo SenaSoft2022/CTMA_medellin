@@ -8,17 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-    {{ $jugadores[6]->nombres }}
+
     <br>
 
-    {{ json_encode($cartasA) }}
+
     <br>
-    @foreach ($cartasA as $item)
+    @foreach ($baraja as $item)
         {{ json_encode($item) }}
     @endforeach
 <br>
-{{array_column($cartasA,'foto')[0]}}
-<img src="{{ url('../../storage/img/real_madrid.png') }}" alt="">
+{{array_column($baraja,'foto')[0]}}
+
 
 
 
