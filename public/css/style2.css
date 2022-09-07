@@ -1,0 +1,23 @@
+
+.bajar {
+    margin-top: 90px;
+
+}
+
+body {
+    background-image :url('../../storage/img/fondo_juego.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.cat {
+    height:80px;
+    width: 80px;
+}

@@ -1,140 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style2.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <title></title>
 </head>
 
 <body>
+    <div class="contenido">
+        <div class="mx-4 mt-3">
+            <div class="row">
+                <div class="col">
+                    <div class="col-md-8">
+                        <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                            <div>
+                                <p class="fs-5">Jugador 1</p>
+                                <img src="{{ asset('storage') . '/img/naipes2.jpg' }}" width="30%" alt=""> =
+                                {{ $contar1 }}
+                            </div>
 
-
-    <div class="container row vh-100 justify-content-center align-items-center">
-        <div class="row">
-            <div class="col">
-                <div class="col-md-6">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <div>
-                            <h3 class="fs-2"></h3>
-                            <p class="fs-5">jugador 1</p>
                         </div>
-                        <i class="fas fa-question fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
+                <div class="col">
+                    @if (empty($baraja1))
+                    @else
+                        <div class="col-md-7">
 
-                <div class="col-md-8">
+                            <div
+                                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
 
-                    <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                                <div>
+                                    <p class="fs-5">{{ array_column($baraja1, 'nombre')[0] }}</p>
+                                    {{ array_column($baraja1, 'codigo')[0] }} <br>
+                                    <div class="cat">
+                                        <img src="{{ asset('storage') . '/img/' . array_column($baraja1, 'foto')[0] }}"
+                                            alt=""><br>
+                                    </div>
+                                    Titulos:
+                                    Internacionales:{{ array_column($baraja1, 'titulos_inter')[0] }} <br>
+                                    Locales:{{ array_column($baraja1, 'titulos_locales')[0] }} <br>
+                                    Titulos_copas:{{ array_column($baraja1, 'titulos_copas')[0] }} <br>
+                                    Pais : {{ array_column($baraja1, 'pais')[0] }}
+                                </div>
 
-                        <div>
-                            <img width="100" src="{{asset('storage').'/img/'.array_column($baraja1,'foto')[0]}}" alt="">
-                            <h3 class="fs-2">{{array_column($baraja1,'codigo')[0]}}</h3>
-                            <p class="fs-5">titulos internacionales:{{array_column($baraja1,'titulos_inter')[0]}}</p>
-                            <p class="fs-5">titulos locales:{{array_column($baraja1,'titulos_locales')[0]}}</p>
-                            <p class="fs-5">titulos_copas:{{array_column($baraja1,'titulos_copas')[0]}}</p>
-                            <p class="fs-5">pais : {{array_column($baraja1,'pais')[0]}}</p>
+                            </div>
                         </div>
-
-                    </div>
-
+                    @endif
                 </div>
-            </div>
-            <div class="col">
-                <div class="col-md-6">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <div>
-                            <h3 class="fs-2"></h3>
-                            <p class="fs-5">jugador 2</p>
+                <div class="col">
+                    @if (empty($baraja1))
+                    @else
+                        <div class="col-md-7">
+                            <div
+                                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+                                <div>
+
+                                    <p class="fs-5">{{ array_column($baraja3, 'nombre')[0] }}</p>
+                                    {{ array_column($baraja3, 'codigo')[0] }} <br>
+                                    <img width="40%"
+                                        src="{{ asset('storage') . '/img/' . array_column($baraja3, 'foto')[0] }}"
+                                        alt=""><br>
+                                    Titulos:
+                                    Internacionales:{{ array_column($baraja2, 'titulos_inter')[0] }} <br>
+                                    Locales:{{ array_column($baraja3, 'titulos_locales')[0] }} <br>
+                                    Copas:{{ array_column($baraja3, 'titulos_copas')[0] }} <br>
+                                    Pais : {{ array_column($baraja3, 'pais')[0] }}
+                                </div>
+
+                            </div>
                         </div>
-                        <i class="fas fa-question fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                    </div>
+                    @endif
                 </div>
+                <div class="col">
+                    <div class="col-md-9">
+                        <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                            <div>
+                                <p class="fs-5">Jugador 2</p>
+                                <img src="img/naipes2.jpg" width="40" alt=""> = 3
+                            </div>
 
-                <div class="col-md-8">
-
-                    <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-
-                        <div>
-                            <img width="100" src="{{asset('storage').'/img/'.array_column($baraja2,'foto')[0]}}" alt="">
-                            <h3 class="fs-2">{{array_column($baraja2,'codigo')[0]}}</h3>
-                            <p class="fs-5">titulos internacionales:{{array_column($baraja2,'titulos_inter')[0]}}</p>
-                            <p class="fs-5">titulos locales:{{array_column($baraja2,'titulos_locales')[0]}}</p>
-                            <p class="fs-5">titulos_copas:{{array_column($baraja2,'titulos_copas')[0]}}</p>
-                            <p class="fs-5">pais : {{array_column($baraja2,'pais')[0]}}</p>
                         </div>
-
-                    </div>
-
-                </div>
-            </div>
-        <div class="row">
-            <div class="col">
-                @if (empty($baraja3))
-
-                @else
-                <div class="col-md-6">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <div>
-                            <h3 class="fs-2"></h3>
-                            <p class="fs-5">jugador 3</p>
-                        </div>
-                        <i class="fas fa-question fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-
-                    <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-
-                        <div>
-                            <img width="100" src="{{asset('storage').'/img/'.array_column($baraja3,'foto')[0]}}" alt="">
-                            <h3 class="fs-2">{{array_column($baraja3,'codigo')[0]}}</h3>
-                            <p class="fs-5">titulos internacionales:{{array_column($baraja3,'titulos_inter')[0]}}</p>
-                            <p class="fs-5">titulos locales:{{array_column($baraja3,'titulos_locales')[0]}}</p>
-                            <p class="fs-5">titulos_copas:{{array_column($baraja3,'titulos_copas')[0]}}</p>
-                            <p class="fs-5">pais : {{array_column($baraja3,'pais')[0]}}</p>
-                        </div>
-
-                    </div>
-
-                </div>
-                @endif
-
-            </div>
-            <div class="col ">
-                @if (empty($baraja4))
-
-
-                @else
-                <div class="col-md-3">
-                    <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                        <div>
-                            <h3 class="fs-2"></h3>
-                            <p class="fs-5">jugador 4</p>
-                        </div>
-                        <i class="fas fa-question fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                     </div>
                 </div>
+                <div class="w-100"></div>
+                <br>
+                <div class="col bajar">
+                    <div class="col-md-9">
+                        <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                            <div>
+                                <p class="fs-5">Jugador 3</p>
+                                <img src="img/naipes2.jpg" width="40" alt=""> = 3
+                            </div>
 
-                @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col bajar">
+                    @if (empty($baraja3))
+                    @else
+                        <div class="col-md-7">
+                            <div
+                                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
 
+                                <div>
+                                    <p class="fs-5">{{ array_column($baraja2, 'nombre')[0] }}</p>
+                                    {{ array_column($baraja2, 'codigo')[0] }} <br>
+                                    <img width="40%"
+                                        src="{{ asset('storage') . '/img/' . array_column($baraja2, 'foto')[0] }}"
+                                        alt=""><br>
+                                    Titulos:
+                                    Internacionales:{{ array_column($baraja2, 'titulos_inter')[0] }} <br>
+                                    Locales:{{ array_column($baraja2, 'titulos_locales')[0] }} <br>
+                                    Copas:{{ array_column($baraja2, 'titulos_copas')[0] }} <br>
+                                    Pais : {{ array_column($baraja2, 'pais')[0] }}
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <div class="col bajar">
+                    @if (empty($baraja4))
+                    @else
+                        <div class="col-md-7">
+                            <div
+                                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+                                <div>
+                                    <p class="fs-5">{{ array_column($baraja4, 'nombre')[0] }}</p>
+                                    {{ array_column($baraja4, 'codigo')[0] }} <br>
+                                    <img width="40%"
+                                        src="{{ asset('storage') . '/img/' . array_column($baraja4, 'foto')[0] }}"
+                                        alt=""><br>
+                                    Titulos:
+                                    Internacionales:{{ array_column($baraja4, 'titulos_inter')[0] }} <br>
+                                    Locales:{{ array_column($baraja4, 'titulos_locales')[0] }} <br>
+                                    Copas:{{ array_column($baraja4, 'titulos_copas')[0] }} <br>
+                                    Pais : {{ array_column($baraja4, 'pais')[0] }}
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <div class="col bajar">
+                    <div class="col-md-9">
+                        <div class="p-3 bg-primary shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <i class="fas fa-user fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                            <div>
+                                <p class="fs-5">Jugador 4</p>
+                                <img src="img/naipes2.jpg" width="40" alt=""> = 3
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

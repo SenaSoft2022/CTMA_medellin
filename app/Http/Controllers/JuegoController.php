@@ -18,7 +18,7 @@ class JuegoController extends Controller
     {
         session_start();
 
-
+         //--------------------------Extraemos las cartas y barajamos para iniciar el juego ----------------
         if (isset($_SESSION['jugador1'])) {
             $jugador = $_SESSION['jugador1'];
             $jugador1 = @$jugador[0];
@@ -35,7 +35,7 @@ class JuegoController extends Controller
                 }
 
                 $entrada = $id;
-
+                //------------------------Aqui se varaja las cartas---------------------------------
                 $claves_aleatorias = array_rand($entrada, 4);
                 $array =array($entrada[$claves_aleatorias[0]],$entrada[$claves_aleatorias[1]],$entrada[$claves_aleatorias[2]],$entrada[$claves_aleatorias[3]]);
 
@@ -95,7 +95,7 @@ class JuegoController extends Controller
                     }
                     $contar4 = count($baraja4);
             }
-
+           //------------------------------------------------------------------------------------------------
 
             return view('juego.index')->with([
                 'jugador1' => $jugador1, 'jugador2' => $jugador2, 'jugador3' => $jugador3,
@@ -172,9 +172,13 @@ class JuegoController extends Controller
      * @param  \App\Models\Juego  $juego
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Juego $juego)
+    public function destroy($id)
     {
-        //
+        session_start();
+        $id = $_SESSION['jugador1'][0][0];
+        $eliminar =$id->id;
+        return $eliminar;
+        //unset( $_SESSION['jugador1']);
     }
 }
 

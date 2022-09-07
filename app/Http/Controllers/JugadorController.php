@@ -37,7 +37,7 @@ class JugadorController extends Controller
     {
         session_start();
          //unset($_SESSION['jugador1']);
-
+            //----------------------------------Creamos los jugadores que van a dar inicio al juego-------
         $contar = Jugador::where('cod_juego',$request->get('cod_juego'))->count();
 
         $jugador = new Jugador();
@@ -48,7 +48,7 @@ class JugadorController extends Controller
 
         $_SESSION['jugador1'][$contar] =$array;
 
-        //----------------------------------cartas-------------------------------
+        //---------------------------------------------------------------------------------------------------
 
 
         return redirect('/juego');
