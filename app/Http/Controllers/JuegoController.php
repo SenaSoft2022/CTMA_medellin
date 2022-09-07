@@ -17,33 +17,96 @@ class JuegoController extends Controller
     public function index()
     {
         session_start();
-        $cartas = Carta::all();
-        foreach($cartas as $item){
-            $id[] =$item->id;
-
-        }
-        for ($i=1; $i <= count($id) ; $i++) {
-            $ids=$i;
-
-            $baraja[] = Carta::find($ids);
-        }
-
-
-
-
-        return view('juego.index')->with(['baraja'=>$baraja]);
 
 
         if (isset($_SESSION['jugador1'])) {
             $jugador = $_SESSION['jugador1'];
-            if (isset($_SESSION['cartasA'])) {
-                $cartasA =array($_SESSION['cartasA']) ;
+            $jugador1 = @$jugador[0];
+            $jugador2 = @$jugador[1];
+            $jugador3 = @$jugador[2];
+            $jugador4 = @$jugador[3];
+
+            //cartas a barajar
+            if (!empty($jugador1)) {
+
+                $cartas = Carta::all();
+                foreach ($cartas as $item) {
+                    $id[] = $item->id;
+                }
+
+                $entrada = $id;
+
+                $claves_aleatorias = array_rand($entrada, 4);
+                $array =array($entrada[$claves_aleatorias[0]],$entrada[$claves_aleatorias[1]],$entrada[$claves_aleatorias[2]],$entrada[$claves_aleatorias[3]]);
+
+                    for ($i=0; $i < count($array) ; $i++) {
+                        $id_2 =$array [$i];
+                        $baraja1[] = Carta::find($id_2);
+                    }
+                    $contar1 = count($baraja1);
+
             }
+
+            if (!empty($jugador2)) {
+                $cartas = Carta::all();
+                foreach ($cartas as $item) {
+                    $id[] = $item->id;
+                }
+
+                $entrada = $id;
+                $claves_aleatorias = array_rand($entrada, 4);
+                $array =array($entrada[$claves_aleatorias[0]],$entrada[$claves_aleatorias[1]],$entrada[$claves_aleatorias[2]],$entrada[$claves_aleatorias[3]]);
+
+                    for ($i=0; $i < count($array) ; $i++) {
+                        $id_2 =$array [$i];
+                        $baraja2[] = Carta::find($id_2);
+                    }
+                    $contar2 = count($baraja2);
+            }
+            if (!empty($jugador3)) {
+                $cartas = Carta::all();
+                foreach ($cartas as $item) {
+                    $id[] = $item->id;
+                }
+
+                $entrada = $id;
+                $claves_aleatorias = array_rand($entrada, 4);
+                $array =array($entrada[$claves_aleatorias[0]],$entrada[$claves_aleatorias[1]],$entrada[$claves_aleatorias[2]],$entrada[$claves_aleatorias[3]]);
+
+                    for ($i=0; $i < count($array) ; $i++) {
+                        $id_2 =$array [$i];
+                        $baraja3[] = Carta::find($id_2);
+                    }
+                    $contar3 = count($baraja3);
+            }
+            if (!empty($jugador4)) {
+                $cartas = Carta::all();
+                foreach ($cartas as $item) {
+                    $id[] = $item->id;
+                }
+
+                $entrada = $id;
+                $claves_aleatorias = array_rand($entrada, 4);
+                $array =array($entrada[$claves_aleatorias[0]],$entrada[$claves_aleatorias[1]],$entrada[$claves_aleatorias[2]],$entrada[$claves_aleatorias[3]]);
+
+                    for ($i=0; $i < count($array) ; $i++) {
+                        $id_2 =$array [$i];
+                        $baraja4[] = Carta::find($id_2);
+                    }
+                    $contar4 = count($baraja4);
+            }
+
+
+            return view('juego.index')->with([
+                'jugador1' => $jugador1, 'jugador2' => $jugador2, 'jugador3' => $jugador3,
+                'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                'contar1' =>$contar1, 'contar2' =>@$contar2, 'contar3' =>@$contar3, 'contar4' =>@$contar4
+            ]);
         }
 
 
 
-        return view('juego.index')->with(['jugadores' => $jugador,'cartasA'=>$cartasA]);
+
         //return $jugador;
     }
 
@@ -114,3 +177,4 @@ class JuegoController extends Controller
         //
     }
 }
+

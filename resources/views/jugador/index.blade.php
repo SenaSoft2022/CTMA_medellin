@@ -14,9 +14,7 @@
         <div class="vh-100 row justify-content-center align-items-center">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <i class="fa-solid fa-futbol">
-                        <h1></h1>
-                    </i>
+                    <i class="fa-solid fa-futbol fs-6 fw-bold">   </i>
                     <div class="">
                         <div class="mb-3">
                             <label class="form-label">Ingresar codigo de sala</label>

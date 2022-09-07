@@ -36,7 +36,7 @@ class JugadorController extends Controller
     public function store(Request $request)
     {
         session_start();
-
+         //unset($_SESSION['jugador1']);
 
         $contar = Jugador::where('cod_juego',$request->get('cod_juego'))->count();
 
@@ -46,9 +46,10 @@ class JugadorController extends Controller
         $jugador->save();
         $array = array($jugador);
 
-        $_SESSION['jugador1'][$contar] =$jugador;
+        $_SESSION['jugador1'][$contar] =$array;
+
         //----------------------------------cartas-------------------------------
-        $_SESSION['cartasA'] = array('iden'=>'1A','foto'=>"real_madrid",'nombre'=>'real_madrid','titulosI'=>'29','titulosL'=>'35','titulosC'=>'19','pais'=>'españa','liga'=>'la liga');
+
 
         return redirect('/juego');
         //return $_SESSION['jugador1'];
