@@ -169,11 +169,12 @@ class JuegoController extends Controller
                     $turno = 1;
                     return view('juego.index')->with([
                         'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'mensaje'=>$mensaje,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop, 'turno'=>$turno
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop, 'turno'=>@$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                    echo "ganador j2";
+
+                    $mensaje = "Ha ganado el jugador 2";
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][0];
 
 
@@ -185,9 +186,10 @@ class JuegoController extends Controller
                     $contar2 = count($baraja2);
 
                     $loop = 1;
+                    $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop ]);
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop,'turno'=>@$turno ]);
                 }
 
 
@@ -201,7 +203,7 @@ class JuegoController extends Controller
                 $j4 = @$_SESSION['baraja_j_4'];
                 $ganador = max($j1, $j2);
                 if ($j1 == $ganador) {
-                    echo "ganador j1";
+                    $mensaje = "Ha ganado el jugador 1";
 
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][0];
 
@@ -214,14 +216,15 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $loop = 1;
+                    $turno = 1;
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop,'turno'=>@$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                    echo "ganador j2";
+                    $mensaje = "Ha ganado el jugador 2";
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][0];
 
                     unset($_SESSION['baraja_j_1'][0]);
@@ -232,9 +235,10 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $loop = 1;
+                    $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
-                        'contar1' => $contar1, 'contar2' => @$contar2,  'loop' => $loop]);
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2,  'loop' => $loop,'turno'=>@$turno]);
                 }
 
 
@@ -248,7 +252,8 @@ class JuegoController extends Controller
                 $ganador = max($j1, $j2);
 
                 if ($j1 == $ganador) {
-                    echo "ganador j1";
+
+                    $mensaje = "Ha ganado el jugador 1";
 
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][0];
 
@@ -260,14 +265,15 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $loop = 1;
-                    $turno = "j2";
+                    $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje',$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop,'turno'=>@$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                    echo "ganador j2";
+
+                    $mensaje = "Ha ganado el jugador 2";
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][0];
 
 
@@ -279,9 +285,10 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $loop = 1;
+                    $turno =1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop]);
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop,'turno'=>@$turno]);
                 }
             }
 
@@ -303,7 +310,7 @@ class JuegoController extends Controller
 
                 if ($j1 == $ganador) {
 
-                    echo "ganador j1";
+                    $mensaje = "Ha ganado el jugador 1";
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][$loop];
 
 
@@ -315,13 +322,23 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
 
+                    if(!isset($turno)){
+                        $turno = 1;
+                    }else{
+
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2,'turno'=>$turno,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        ]);
+                    }
+
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                   echo "ganador j2";
+                    $mensaje = "Ha ganado el jugador 2";
                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
 
                     unset($_SESSION['baraja_j_1'][$loop]);
@@ -330,9 +347,18 @@ class JuegoController extends Controller
                     $baraja2 = $_SESSION['baraja_j_2'];
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
+                    if(!isset($turno)){
+                        $turno = 1;
+                    }else{
+
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2,'turno'=>$turno,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        ]);
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
                     ]);
                 }
@@ -350,7 +376,7 @@ class JuegoController extends Controller
                 $ganador = max($j1, $j2);
                 if ($j1 == $ganador) {
 
-                    echo "ganador j1";
+                    $mensaje = "Ha ganado el jugador 1";
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][$loop];
 
                     unset($_SESSION['baraja_j_2'][$loop]);
@@ -358,14 +384,23 @@ class JuegoController extends Controller
                     $baraja2 = $_SESSION['baraja_j_2'];
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
+                    if(!isset($turno)){
+                        $turno = 1;
+                    }else{
+
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2,'turno'=>$turno,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        ]);
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2,  'loop' => $loop
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                   echo "ganador j2";
+                    $mensaje = "Ha ganado el jugador 2";
                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
 
                     unset($_SESSION['baraja_j_1'][$loop]);
@@ -374,9 +409,18 @@ class JuegoController extends Controller
                     $baraja2 = $_SESSION['baraja_j_2'];
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
+                    if(empty($turno)){
+                        $turno = 1;
+                    }else{
+
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2,'turno'=>$turno,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        ]);
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
                     ]);
                 }
@@ -392,7 +436,7 @@ class JuegoController extends Controller
                 $ganador = max($j1, $j2);
                 if ($j1 == $ganador) {
 
-                    echo "ganador j1";
+                    $mensaje = "Ha ganado el jugador 1";
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][$loop];
 
                     unset($_SESSION['baraja_j_2'][$loop]);
@@ -400,13 +444,22 @@ class JuegoController extends Controller
                     $baraja2 = $_SESSION['baraja_j_2'];
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
+                    if(empty($turno)){
+                        $turno = 1;
+                    }else{
+
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2,'turno'=>$turno,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        ]);
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop,'mensaje'=>$mensaje
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                   echo "ganador j2";
+                    $mensaje = "Ha ganado el jugador 2";
                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
 
                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
@@ -415,9 +468,18 @@ class JuegoController extends Controller
                     $baraja2 = $_SESSION['baraja_j_2'];
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
+                    if(empty($turno)){
+                        $turno = 1;
+                    }else{
+
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2,'turno'=>$turno,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        ]);
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'contar1' => $contar1, 'contar2' => @$contar2, 'loop' => $loop,'mensaje'=>$mensaje
                     ]);
                 }
             }
@@ -476,7 +538,8 @@ class JuegoController extends Controller
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                    echo "ganador j2";
+
+                    $mensaje = "Ha ganado el jugador 2";
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][0];
 
                     $_SESSION['baraja_j_2'][]=@$_SESSION['baraja_j_3'][0];
@@ -492,11 +555,11 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno]);
                 } else if ($j3 == $ganador) {
+                    $mensaje = "Ha ganado el jugador 3";
 
-                    echo "ganador j3";
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_2'][0];
 
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_1'][0];
@@ -513,7 +576,7 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno]);
                 }
 
@@ -525,7 +588,8 @@ class JuegoController extends Controller
                 $j4 = @$_SESSION['baraja_j_4'];
                 $ganador = max($j1, $j2, $j3);
                 if ($j1 == $ganador) {
-                    echo "ganador j1";
+
+                    $mensaje = "Ha ganado el jugador 1";
 
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][0];
 
@@ -544,12 +608,13 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                    echo "ganador j2";
+
+                    $mensaje = "Ha ganado el jugador 2";
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][0];
 
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][0];
@@ -565,10 +630,11 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno]);
                 } else if ($j3 == $ganador) {
-                    echo "ganador j3";
+
+                    $mensaje = "Ha ganado el jugador 3";
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_1'][0];
 
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_2'][0];
@@ -583,7 +649,7 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno]);
                 }
 
@@ -602,7 +668,8 @@ class JuegoController extends Controller
                 $j4 = @$_SESSION['baraja_j_4'];
                 $ganador = max($j1, $j2, $j3);
                 if ($j1 == $ganador) {
-                    echo "ganador j1";
+
+                    $mensaje = "Ha ganado el jugador 1";
 
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][0];
 
@@ -620,12 +687,13 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                    'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                    echo "ganador j2";
+                    $mensaje = "Ha ganado el jugador 2";
+
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][0];
 
                     $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][0];
@@ -640,10 +708,10 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno]);
                 } else if ($j3 == $ganador) {
-                    echo "ganador j3";
+                    $mensaje = "Ha ganado el jugador 3";
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_1'][0];
 
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_2'][0];
@@ -658,7 +726,7 @@ class JuegoController extends Controller
                     $loop = 1;
                     $turno = 1;
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
                         'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno]);
                 }
             }
@@ -705,18 +773,30 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
-                    $turno = 2;
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
                         'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>@$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                   echo "ganador j2";
-                   $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
 
-                   $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
+                    $mensaje = "Ha ganado el jugador 2";
+                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
+
+                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
                     unset($_SESSION['baraja_j_1'][$loop]);
                     unset($_SESSION['baraja_j_3'][$loop]);
                     $baraja1 = $_SESSION['baraja_j_1'];
@@ -726,14 +806,25 @@ class JuegoController extends Controller
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
 
-                    $turno = 2;
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>@$turno
                     ]);
                 } else if ($j3 == $ganador) {
-                    echo "ganador j3";
+                    $mensaje = "Ha ganado el jugador 3";
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_2'][$loop];
 
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_1'][$loop];
@@ -745,11 +836,22 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
-                    $turno = 2;
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>@$turno
                     ]);
                 }
 
@@ -767,7 +869,7 @@ class JuegoController extends Controller
                 $ganador = max($j1, $j2, $j3);
                 if ($j1 == $ganador) {
 
-                    echo "ganador j1";
+                    $mensaje = "Ha ganado el jugador 1";
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][$loop];
 
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_3'][$loop];
@@ -779,17 +881,30 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                   echo "ganador j2";
-                   $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
 
-                   $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
+                    $mensaje = "Ha ganado el jugador 2";
+                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
+
+                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
                     unset($_SESSION['baraja_j_1'][$loop]);
                     unset($_SESSION['baraja_j_3'][$loop]);
                     $baraja1 = $_SESSION['baraja_j_1'];
@@ -798,13 +913,26 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
                     ]);
                 } else if ($j3 == $ganador) {
-                    echo "ganador j3";
+
+                    $mensaje = "Ha ganado el jugador 3";
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_2'][$loop];
 
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_1'][$loop];
@@ -816,10 +944,23 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
+
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3, 'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>@$turno
                     ]);
                 }
 
@@ -837,7 +978,7 @@ class JuegoController extends Controller
                 $ganador = max($j1, $j2, $j3);
                 if ($j1 == $ganador) {
 
-                    echo "ganador j1";
+                    $mensaje = "Ha ganado el jugador 1";
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_2'][$loop];
 
                     $_SESSION['baraja_j_1'][]=$_SESSION['baraja_j_3'][$loop];
@@ -849,17 +990,30 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
                     ]);
                     exit;
                 } else if ($j2 == $ganador) {
-                   echo "ganador j2";
-                   $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
 
-                   $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
+                    $mensaje = "Ha ganado el jugador 2";
+                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_1'][$loop];
+
+                    $_SESSION['baraja_j_2'][]=$_SESSION['baraja_j_3'][$loop];
                     unset($_SESSION['baraja_j_1'][$loop]);
                     unset($_SESSION['baraja_j_3'][$loop]);
                     $baraja1 = $_SESSION['baraja_j_1'];
@@ -868,13 +1022,26 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
+
+                    }
 
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>$turno
                     ]);
                 } else if ($j3 == $ganador) {
-                    echo "ganador j3";
+
+                    $mensaje = "Ha ganado el jugador 3";
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_1'][$loop];
 
                     $_SESSION['baraja_j_3'][]=$_SESSION['baraja_j_2'][$loop];
@@ -886,10 +1053,21 @@ class JuegoController extends Controller
                     $contar1 = count($baraja1);
                     $contar2 = count($baraja2);
                     $contar3 = count($baraja3);
+                    if($request->exists('turno3')){
+                        return view('juego.index')->with([
+                            'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                            'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        ]);
+                    }
+                    if(empty($turno)){
+                        $turno = 2;
+                    }else{
+                        $turno = 1;
 
+                    }
                     return view('juego.index')->with([
-                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,
-                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop
+                        'baraja1' => $baraja1, 'baraja2' => @$baraja2, 'baraja3' => @$baraja3,'mensaje'=>$mensaje,
+                        'contar1' => $contar1, 'contar2' => @$contar2, 'contar3' => @$contar3, 'loop' => $loop,'turno'=>@$turno
                     ]);
                 }
 

@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/alert.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -41,7 +42,7 @@
                                         <option value="copa">Titulos Copas</option>
                                     </select>
 
-                                    <input type="submit" value="enviar">
+                                    <input class="btn btn-primary mt-2" type="submit" value="Enviar">
                                 </div>
                                     @endif
 
@@ -116,7 +117,7 @@
                                             alt="">
                                     </div> <h6 class="mx-3 fw-bold text-white"> = {{ $contar2 }}</h6>
                                     @if (@$turno==1)
-                                    <input type="hidden" name="loop" value="{{ @$loop }}">
+                                    <input type="text" name="loop" value="{{ @$loop }}">
                                     <div class="mx-2 mt-2">
 
                                     <select name="caracteristica" class="form-select" id="">
@@ -148,7 +149,8 @@
                                             alt="">
                                     </div> <h6 class="mx-3 fw-bold text-white"> = {{ @$contar3 }}</h6>
                                     @if (@$turno==2)
-                                    <input type="hidden" name="loop" value="{{ @$loop }}">
+                                    <input type="text" name="loop" value="{{ @$loop }}">
+                                    <input type="text" name="turno3" value="">
                                     <div class="mx-2 mt-2">
 
                                     <select name="caracteristica" class="form-select" id="">
@@ -168,6 +170,17 @@
                     </div>
                     <div class="col bajar">
                         @if (empty($baraja3))
+                        <div class="col">
+                            <div class="col-md-7">
+                                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+
+                                    <div>
+                                        <p class="fs-5">No hay jugador</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         @else
                             <div class="col-md-7">
                                 <div
@@ -249,22 +262,19 @@
         </div>
 
     </form>
-
-    @if (isset($mensaje))
-    <script>
-        swal({
-            title: "Sweet!",
-            text: "Here's a custom image.",
-            imageUrl: 'thumbs-up.jpg'
-            });
-    </script>
-        <h1>{{ $mensaje }}</h1>
-    @endif
-
-    <script src="js/main.js"></script>
+    <script src="js/alert.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
+     @if (isset($mensaje))
+     <script>
+         swal({
+            title: "Ganador!",
+            text: "{{ $mensaje }}"
+            });
+     </script>
+
+     @endif
 </body>
 
 </html>
