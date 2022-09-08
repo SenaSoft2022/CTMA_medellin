@@ -36,9 +36,9 @@ class JugadorController extends Controller
     public function store(Request $request)
     {
         session_start();
-         //unset($_SESSION['jugador1']);
-            //----------------------------------Creamos los jugadores que van a dar inicio al juego-------
-        $contar = Jugador::where('cod_juego',$request->get('cod_juego'))->count();
+
+        //unset($_SESSION['jugador1']);
+        //$contar = Jugador::where('cod_juego',$request->get('cod_juego'))->count();
 
         $jugador = new Jugador();
         $jugador->cod_juego = $request->get('cod_juego');
@@ -46,9 +46,9 @@ class JugadorController extends Controller
         $jugador->save();
         $array = array($jugador);
 
-        $_SESSION['jugador1'][$contar] =$array;
+        $_SESSION['jugador1'][] =$jugador;
 
-        //---------------------------------------------------------------------------------------------------
+        //----------------------------------cartas-------------------------------
 
 
         return redirect('/juego');
